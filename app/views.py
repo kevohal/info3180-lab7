@@ -5,11 +5,13 @@ Werkzeug Documentation:  https://werkzeug.palletsprojects.com/
 This file creates your application.
 """
 
+from crypt import methods
 from app import app
 from flask import render_template, request, jsonify, send_file
 import os
 from .forms import UploadForm
 from werkzeug.utils import secure_filename
+from flask_wtf.csrf import generate_csrf
 
 ###
 # Routing for your application.
@@ -25,7 +27,7 @@ def upload():
 
     form = UploadForm()
 
-    if request.method == 'POST':
+    if request.method == 'POST':   
         if form.validate_on_submit():
             
             description = form.description.data
@@ -39,9 +41,18 @@ def upload():
                     "description": description
                 }
 
-            return jsonify(upload=upload)
-        return jsonify(form_errors(form))
-            
+            return jsonify(error=None, upload=upload)
+        else:
+            return {
+                "errors": [
+                    {},
+                    {}
+                ]
+        }
+
+@app.route('/api/csrf-token', methods=['GET'])
+def get_csrf():
+    return jsonify({'csrf_token': generate_csrf()})            
             
 ###
 # The functions below should be applicable to all Flask apps.
