@@ -1,16 +1,26 @@
 <template>
     <div class="container">
         <form @submit.prevent="uploadPhoto" enctype="multipart/form-data" id="uploadForm" class="form-control">
-            <label for="photo">Photo</label>
-            <input type = "file" name = "photo" class="form-control">
-
-            <label for="description" >Description</label>
-            <textarea name = "description" id="photo" class="form-control">Enter the description of your photo here...</textarea>
-
+            <div class="formfield">
+                <h2>Upload Form</h2>
+            </div>
+            <div class="formfield">
+                <label for="description" >Description</label>
+                <textarea name = "description" id="photo" class="form-control">Enter the description of your photo here...</textarea>   
+            </div>
+            
+            <div class="formfield">
+                <label for="photo">Photo Upload</label>
+                <input type = "file" name = "photo" class="form-control">    
+            </div>
+            
+            
             <br>
             <br>
 
-            <button type = "submit" class="btn-primary" >Send</button>
+            <div class="butn">
+                <button type = "submit" class="btn btn-primary" >Submit</button>
+            </div>
        
        </form>
     </div>    
@@ -73,4 +83,15 @@
 
     }
 </script>
+
+<style scoped>
+    .formfield {
+        margin: 20px;
+
+    }
+
+    .butn {
+        margin-left: 20px;
+    }
+</style>
  

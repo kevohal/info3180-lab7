@@ -5,7 +5,7 @@ Werkzeug Documentation:  https://werkzeug.palletsprojects.com/
 This file creates your application.
 """
 
-from crypt import methods
+#from crypt import methods
 from app import app
 from flask import render_template, request, jsonify, send_file
 import os
